@@ -13,15 +13,15 @@ using namespace std;
 
 int main() {
     int year;
-    cout << "Enter year: ";
+    cout << "Enter year: "; //
     cin >> year;
     string leap;
     if (year % 4 != 0){
-        leap = "Common year";
+        leap = "Common year"; //
     } else if (year % 100 != 0){
         leap = "Leap year";
     } else if (year % 400 != 0){
-        leap = "Common year";
+        leap = "Common year"; //
     } else {
         leap = "Leap year";
     }

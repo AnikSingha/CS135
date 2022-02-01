@@ -22,7 +22,7 @@ int main(){
         } else if(operation == '-'){
             cin >> num;
             answer -= num;
-        } else if (operation == ';'){
+        } else if (operation == ';'){ //
             cout << answer << endl;
             cin >> answer;
         }

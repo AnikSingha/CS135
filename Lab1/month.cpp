@@ -12,12 +12,12 @@ Asks the user to input the year and the month (1-12) and prints the number of da
 using namespace std;
 
 int main() {
-    int year, month;
+    int year, month; //
     cout << "Enter year: ";
     cin >> year;
     cout << "Enter month: ";
     cin >> month;
-    bool leap;
+    bool leap; //
     if (year % 4 != 0){
         leap = false;
     } else if (year % 100 != 0){
@@ -25,7 +25,7 @@ int main() {
     } else if (year % 400 != 0){
         leap = false;
     } else {
-        leap = true;
+        leap = true; //
     }
     if (month == 1 || month == 3 || month == 5 || month == 7 || 
         month == 8 || month == 10 || month == 12){
@@ -37,4 +37,4 @@ int main() {
         } else {
             cout << "28 days";
         }
-}
+} // 

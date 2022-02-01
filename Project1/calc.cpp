@@ -15,7 +15,7 @@ int main(){
     int num, answer = 0;
     char operation;
     cin >> answer;
-    while (cin >> operation >> num){
+    while (cin >> operation >> num){ // read in operation and then num
         if (operation == '+'){
             answer += num;
         } else if (operation == '-'){
