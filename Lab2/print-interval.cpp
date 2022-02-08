@@ -9,14 +9,14 @@ Print all numbers between two integers
 
 #include <iostream>
 
-using namespace std;
+using namespace std; //
 
 int main() {
     int L, U;
-    cout << "Please enter L: ";
+    cout << "Please enter L: "; //
     cin >> L;
     cout << "Please enter U: ";
-    cin >> U;
+    cin >> U; //
     for (int i = L; i < U; i++){
         cout << i << " ";
     }

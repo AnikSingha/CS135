@@ -12,11 +12,11 @@ Input Validation
 using namespace std;
 
 int main() {
-    int num;
+    int num; //
     do{
         cout << "Please enter an integer: ";
         cin >> num;
-    } while (0 >= num || num >= 100);
-    cout << "Number squared is " << num * num;
+    } while (0 >= num || num >= 100); //
+    cout << "Number squared is " << num * num; //
 }
 
