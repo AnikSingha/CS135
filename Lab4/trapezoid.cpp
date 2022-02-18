@@ -13,7 +13,6 @@ using namespace std;
 
 int main() {
     int width, height, stars, spaces = 0;
-    string ast = "*";
     cout << "Input width: ";
     cin >> width;
     cout << "Input height: ";
@@ -29,7 +28,7 @@ int main() {
             cout << " ";
         }
         for (int i = 0; i < stars; i++){
-            cout << ast;
+            cout << "*";
         }
         cout << endl;
         spaces += 1;
