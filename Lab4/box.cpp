@@ -13,7 +13,6 @@ using namespace std;
 
 int main() {
     int width, height;
-    string ast = "*";
     cout << "Input width: ";
     cin >> width;
     cout << "Input height: ";
@@ -21,7 +20,7 @@ int main() {
     cout << endl << "Shape:" << endl << endl;
     for (int row = 0; row < height; row++){
         for (int col = 0; col < width; col++){
-            cout << ast;
+            cout << "*";
         }
         cout << endl << endl;
     }
