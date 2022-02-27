@@ -7,19 +7,19 @@ Assignment: Lab4F
 Upside-down trapezoid
 */
 
-#include <iostream>
+#include <iostream> //
+#include <math.h>
 
-using namespace std;
+using namespace std; //
 
 int main() {
     int width, height, stars, spaces = 0;
-    string ast = "*";
     cout << "Input width: ";
     cin >> width;
     cout << "Input height: ";
     cin >> height;
     stars = width;
-    if (height * 2 > width){
+    if (width - (2 * (height - 1)) <= 0 ){
         cout << endl << endl << "Impossible shape!";
         return 0;
     }
@@ -29,7 +29,7 @@ int main() {
             cout << " ";
         }
         for (int i = 0; i < stars; i++){
-            cout << ast;
+            cout << "*";
         }
         cout << endl;
         spaces += 1;

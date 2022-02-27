@@ -7,9 +7,9 @@ Assignment: Lab4G
 Print a checkerboard of 3x3 sqaures
 */
 
-#include <iostream>
+#include <iostream> //
 
-using namespace std;
+using namespace std; //
 
 int main() {
     int width, height;

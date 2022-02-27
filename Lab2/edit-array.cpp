@@ -12,10 +12,10 @@ Store, update, and retrieve numbers using arrays
 using namespace std;
 
 int main() {
-    int myData[10], i, v;
+    int myData[10], i, v; //
     for (int x = 0; x < 10; x++){
         myData[x] = 1;
-    }
+    } //
     do{
         for (int x = 0; x < 10; x++){
             cout << myData[x] << " ";
@@ -23,10 +23,10 @@ int main() {
         cout << '\n' << '\n';
         cout << "Input index: ";
         cin >> i;
-        cout << "Input value: ";
+        cout << "Input value: "; //
         cin >> v;
         cout << '\n' << '\n';
-        if (i >= 0 && i <=10){
+        if (i >= 0 && i < 10){
             myData[i] = v;
         }
      } while(i >= 0 && i < 10);

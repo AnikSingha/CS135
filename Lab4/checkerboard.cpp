@@ -7,9 +7,9 @@ Assignment: Lab4B
 Output a checkerboard
 */
 
-#include <iostream>
+#include <iostream> //
 
-using namespace std;
+using namespace std;//
 
 int main() {
     int width, height, actual;

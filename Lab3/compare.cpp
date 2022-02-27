@@ -8,11 +8,11 @@ compare elevations
 */
 
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <climits>
+#include <fstream> //
+#include <cstdlib> //
+#include <climits> //
 
-using namespace std;
+using namespace std; //
 
 
 int main(){

@@ -13,15 +13,19 @@ using namespace std;
 
 int main() {
     int width, height;
+<<<<<<< HEAD
     string ast = "*";
+    cout << "Input width: "; //
+=======
     cout << "Input width: ";
+>>>>>>> b6b9041fb35568b72896e3d47f56834c582459b3
     cin >> width;
     cout << "Input height: ";
     cin >> height;
     cout << endl << "Shape:" << endl << endl;
     for (int row = 0; row < height; row++){
         for (int col = 0; col < width; col++){
-            cout << ast;
+            cout << "*";
         }
         cout << endl << endl;
     }

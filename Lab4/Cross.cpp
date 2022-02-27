@@ -7,9 +7,9 @@ Assignment: Lab4C
 Output a cross
 */
 
-#include <iostream>
+#include <iostream> // 
 
-using namespace std;
+using namespace std; //
 
 int main() {
     int size, lower, upper;

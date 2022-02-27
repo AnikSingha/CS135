@@ -7,18 +7,18 @@ Assignment: Lab4D
 Lower triangle
 */
 
-#include <iostream>
+#include <iostream> //
 
-using namespace std;
+using namespace std; //
 
 int main() {
     int length;
-    string line,ast = "*";
+    string line;
     cout << "Input side length: ";
     cin >> length;
     cout << endl << endl << "Shape:" << endl << endl;
     for (int row = 0; row < length; row++){
-        line += ast;
+        line += "*";
         cout << line << endl << endl;
     }
 }
