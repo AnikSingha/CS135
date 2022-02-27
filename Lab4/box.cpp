@@ -14,9 +14,12 @@ using namespace std;
 int main() {
     int width, height;
 <<<<<<< HEAD
+<<<<<<< HEAD
     string ast = "*";
     cout << "Input width: "; //
 =======
+=======
+>>>>>>> 23214425940c1cefeb6b01bfe98767f99f0eb17c
     cout << "Input width: ";
 >>>>>>> b6b9041fb35568b72896e3d47f56834c582459b3
     cin >> width;
