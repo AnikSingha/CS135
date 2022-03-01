@@ -7,18 +7,23 @@ Assignment: Lab5
 Functions and prime numbers
 */
 
-#include <iostream>
+#include <iostream>//
 
-using namespace std;
+using namespace std;//
 
 bool isDivisibleBy(int n, int d){
-    if (n % d == 0){
-        return true;
+    if (d == 0){
+        return 0;
+    } else {
+        return n % d == 0;
     }
-    return false; 
+
 }
 
 bool isPrime(int n){
+    if (n <= 1){
+        return false;
+    }
     for (int i = n - 1; i > 1; i--){
         if (isDivisibleBy(n, i)){
             return false;
@@ -53,9 +58,9 @@ bool isTwinPrime(int n){
 }
 
 int nextTwinPrime(int n){
-    int c = n + 1;
+    int c = n + 1;//
     while (isTwinPrime(c) != true){
-        c += 1;
+        c += 1;//
     }
     return c;
 }
@@ -63,7 +68,7 @@ int nextTwinPrime(int n){
 int largestTwinPrime(int a, int b){
     for (int i = b; i >= a; i--){
         if (isTwinPrime(i)){
-            return i;
+            return i;//
         }
     }
     return -1;
@@ -73,5 +78,5 @@ int main() {
     int n, d;
     cout << "Input two integers: ";
     cin >> n >> d;
-    cout << largestTwinPrime(n,d);
+    cout << isDivisibleBy(n,d);
 }
