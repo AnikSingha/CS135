@@ -2,7 +2,7 @@
 Author: Anik Singha
 Course: CSCI-135
 Instructor: Tong Yi
-Assignment: e1.7
+Assignment: e4.8
 
 Prnt each letter of a word on a different line
 */

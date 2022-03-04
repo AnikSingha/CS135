@@ -2,7 +2,7 @@
 Author: Anik Singha
 Course: CSCI-135
 Instructor: Tong Yi
-Assignment: e1.7
+Assignment: e3.1
 
 Ouput whether a number is negative, 0, or positive
 */
