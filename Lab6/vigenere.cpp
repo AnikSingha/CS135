@@ -10,10 +10,10 @@ Vigenere Cipher Theory
 #include <iostream>
 
 using namespace std;
-
+//
 char shiftLower(char c, char key){
     int shifted, rshift;
-    rshift = (int)key - (int)'a';
+    rshift = (int)key - (int)'a';//
     if ((int)c < 97 || (int)c > 122){
         shifted = c;
     } else if ((int)c + rshift > 122){
@@ -26,11 +26,11 @@ char shiftLower(char c, char key){
 
 char shiftUpperv(char c, char key){
     int shifted, rshift;
-    rshift = (int)key - (int)'a';
+    rshift = (int)key - (int)'a';//
     if ((int)c + rshift > 90){
         shifted = (int)c - (26 - rshift);
     } else {
-        shifted = (int)c + rshift;
+        shifted = (int)c + rshift;//
     }
     return shifted;
 }

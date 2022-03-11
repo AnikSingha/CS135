@@ -7,18 +7,18 @@ Assignment: Lab6D
 Decryption
 */
 
-#include <iostream>
+#include <iostream>//
 
-using namespace std;
+using namespace std;//
 
 char unshiftCharCaesar(char c, int rshift){
     int shifted;
     if ((int)c < 97 || (int)c > 122){
-        shifted = c;
+        shifted = c;//
     } else if ((int)c - rshift < 97){
         shifted = (int)c + (26 - rshift);
     } else {
-        shifted = (int)c - rshift;
+        shifted = (int)c - rshift;//
     }
     return shifted;
 }
@@ -47,20 +47,20 @@ string decryptCaesar(string plaintext, int rshift){
 
 char unshiftLowerVigenere(char c, char key){
     int shifted, rshift;
-    rshift = (int)key - (int)'a';
+    rshift = (int)key - (int)'a';//
     if ((int)c < 97 || (int)c > 122){
         shifted = c;
     } else if ((int)c - rshift < 97){
         shifted = (int)c + (26 - rshift);
     } else {
-        shifted = (int)c - rshift;
+        shifted = (int)c - rshift;//
     }
     return shifted;
 }
 
 char unshiftUpperVigenere(char c, char key){
     int shifted, rshift;
-    rshift = (int)key - (int)'a';
+    rshift = (int)key - (int)'a';//
     if ((int)c - rshift < 65){
         shifted = (int)c + (26 - rshift);
     } else {
@@ -145,16 +145,16 @@ char shiftUpperv(char c, char key){
     } else {
         shifted = (int)c + rshift;
     }
-    return shifted;
+    return shifted;//
 }
 
 
 string encryptVigenere(string plaintext, string keyword){
-    int key_index = 0;
-    string shifted;
+    int key_index = 0;//
+    string shifted;//
     for (int i = 0; i < plaintext.size(); i++){
         if (key_index == keyword.length()){
-            key_index = 0;
+            key_index = 0;//
         }
         if ((int)plaintext[i] >= 65 && (int)plaintext[i] <= 90){
             shifted += shiftUpperv(plaintext[i], keyword[key_index]);
@@ -162,26 +162,26 @@ string encryptVigenere(string plaintext, string keyword){
         } else {
             shifted += shiftLower(plaintext[i], keyword[key_index]);
             if ((int)plaintext[i] > 96 && (int)plaintext[i] < 123){
-                key_index += 1;
+                key_index += 1;//
             }
-        }
+        }//
     }
-    return shifted;
+    return shifted;//
 }
 
 int main() {
     string plaintext, keyword;
     int shift;
     cout << "Enter plaintext: ";
-    getline(cin, plaintext);
+    getline(cin, plaintext);//
     cout << endl << endl << "= Caesar =" << endl;
-    cout << "Enter shift: ";
+    cout << "Enter shift: ";//
     cin >> shift;
     cout << "Ciphertext: " << encryptCaesar(plaintext, shift) << endl;
     cout << "Decrypted: " << decryptCaesar(encryptCaesar(plaintext, shift), shift) << endl << endl << endl;
-    cout << "= Vigenere =" << endl;
+    cout << "= Vigenere =" << endl;//
     cout << "Enter keyword: ";
-    cin >> keyword;
+    cin >> keyword;//
     cout << "Ciphertext: " << encryptVigenere(plaintext, keyword) << endl;
     cout << "Decrypted: " << decryptVigenere(encryptVigenere(plaintext, keyword), keyword);
 

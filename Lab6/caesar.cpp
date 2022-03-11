@@ -1,3 +1,4 @@
+
 /*
 Author: Anik Singha
 Course: CSCI-135
@@ -11,7 +12,19 @@ Caesar Cipher Theory
 
 using namespace std;
 
-char shiftChar(char c, int rshift){
+//Function that takes care of the upper case characters
+char shiftUpper(char c, int rshift){
+    int shifted;
+    if ((int)c + rshift > 90){
+        shifted = (int)c - (26 - rshift);
+    } else {
+        shifted = (int)c + rshift;
+    }
+    return shifted;
+}
+
+//Function that takes care of the lower case characters
+char shiftLower(char c, int rshift){
     int shifted;
     if ((int)c < 97 || (int)c > 122){
         shifted = c;
@@ -23,24 +36,20 @@ char shiftChar(char c, int rshift){
     return shifted;
 }
 
-char shiftUpper(char c, int rshift){
-    int shifted;
-    if ((int)c + rshift > 90){
-        shifted = (int)c - (26 - rshift);
+//Both functions get used here, to shift any character, whether it be upper case or lose case
+char shiftChar(char c, int rshift){
+    if ((int)c >= 65 && (int)c <= 90){
+        return shiftUpper(c, rshift);
     } else {
-        shifted = (int)c + rshift;
+        return shiftLower(c, rshift);
     }
-    return shifted;
 }
 
+//Uses a for loop and shiftChar function to shift each character one by one
 string encryptCaesar(string plaintext, int rshift){
     string shifted;
     for (int i = 0; i < plaintext.size(); i++){
-        if ((int)plaintext[i] >= 65 && (int)plaintext[i] <= 90){
-            shifted += shiftUpper(plaintext[i], rshift);
-        } else {
-            shifted += shiftChar(plaintext[i], rshift);
-        }
+        shifted += shiftChar(plaintext[i], rshift);
     }
     return shifted;
 }

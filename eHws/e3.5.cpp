@@ -9,16 +9,24 @@ Output whether a set of three numbers are increasing or decreasing
 
 #include <iostream>
 
-using namespace std; //
+using namespace std;
 
 int main(){
-    int first, second, third;
-    cin >> first, second, third;
-    if (second > first && third > second){
+    int a,b,c;
+    cin >> a >> b >> c;
+    if (c > b && b > a)
+    {
         cout << "Increasing";
-    } else if (second < first && third < second){
+    }
+
+    else if (c < b && b < a)
+    {
+        
         cout << "Decreasing";
-    } else {
+    }
+
+    else
+    {
         cout << "Neither";
     }
 }
