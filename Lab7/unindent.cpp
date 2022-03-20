@@ -7,8 +7,8 @@ Assignment: Lab7A
 Remove indentation
 */
 
-#include <iostream>
-#include <fstream>
+#include <iostream>//
+#include <fstream>//
 
 using namespace std;
 
@@ -25,13 +25,8 @@ string removeLeadingSpaces(string line){
 }
 
 int main(){
-    string name, line;
-    cin >> name;
-    ifstream file(name);
-    if (file.is_open()){
-        while (getline(file,line)){
-            cout << removeLeadingSpaces(line) << endl;
-        }
-        file.close();
+    string line;
+    while (getline(cin,line)){
+        cout << removeLeadingSpaces(line) << endl;
     }
 }

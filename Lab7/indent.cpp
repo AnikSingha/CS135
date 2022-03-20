@@ -7,10 +7,10 @@ Assignment: Lab7B
 Add indentation
 */
 
-#include <iostream>
-#include <fstream>
+#include <iostream>//
+#include <fstream>//
 
-using namespace std;
+using namespace std;//
 
 string removeLeadingSpaces(string line){
     int counter = 0;
@@ -36,18 +36,14 @@ int countChar(string line, char c){
 
 int main(){
     int counter = 0;
-    string name, line;
-    cin >> name;
-    ifstream file(name);
-    if (file.is_open()){
-        while (getline(file,line)){
-            counter -= countChar(line, '}');
-            for (int i = 0; i < counter; i++){
-                cout << "\t";
-            }
-            cout << removeLeadingSpaces(line) << endl;
-            counter += countChar(line, '{');
+    string line, updated;
+    while (getline(cin, line, '\n')){
+        string newLine = removeLeadingSpaces(line),
+        indents = "";
+        for(int i = 0; i < (newLine[0] != '}' ? counter : counter - 1 ); i++){
+            indents += '\t';
         }
-        file.close();
+        cout << indents << newLine << endl;
+        counter += countChar(line, '{') - countChar(line, '}');
     }
 }
