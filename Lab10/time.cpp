@@ -9,15 +9,15 @@ Work with Classes
 
 #include <iostream>
 
-using namespace std;
+using namespace std; //
 
 class Time { 
 public:
-    int h;
-    int m;
+    int h; //
+    int m; //
 };
 
-enum Genre {ACTION, COMEDY, DRAMA, ROMANCE, THRILLER};
+enum Genre {ACTION, COMEDY, DRAMA, ROMANCE, THRILLER}; //
 
 class Movie { 
 public: 
@@ -72,7 +72,7 @@ void printTimeSlot(TimeSlot ts){
     output += ts.movie.title + " ";
     output += genre(ts.movie) + " (";
     output += to_string(ts.movie.duration) + " min) ";
-    output += "[starts at " + to_string(ts.startTime.h) + ":" + to_string(ts.startTime.m);
+    output += "[starts at " + to_string(ts.startTime.h) + ":" + to_string(ts.startTime.m) + ",";
     output += " ends by " + to_string(endTime.h) + ":" + to_string(endTime.m) + ']';
     cout << output;
 }
