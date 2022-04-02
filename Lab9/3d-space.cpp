@@ -7,10 +7,10 @@ Assignment: Lab9A
 Work with pointers
 */
 
-#include <iostream>
-#include <math.h>
+#include <iostream> //
+#include <math.h>//
 
-using namespace std;
+using namespace std;//
 
 class Coord3D {
 public:
