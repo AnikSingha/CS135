@@ -18,7 +18,8 @@ MemoryGame::MemoryGame() //default constructor,
     //Note that 2 added after 2 * numPairs means number of 
     //two extra blocks without actual data.
 {
-    srand(time(NULL)); //TODO: uncomment this line to see
+
+    //srand(time(NULL)); //TODO: uncomment this line to see
         //different layouts of numbers in different runnings.
         //time(NULL) is the current running time.
         //use the current running time to grow random sequence
@@ -32,19 +33,38 @@ MemoryGame::MemoryGame() //default constructor,
     numPairs = 3; //do not write int numPairs = 3;
     numSlots = 8; //3 pairs residing in 8 spaces,
                    //there are two empty spaces
-    int *values = new int[3];
-    for (int i = 0; i < 3; i++){
-        values[i] = rand() % 1000;
-    }
     //IMPORTANT:
     //generate three random ints in [0, 1000),
     //randomly set them in the layout of the spaces,
     //that is, set up values array.
+
+    int* data = new int[numPairs];
+    for(int i = 0; i < numPairs; i++){
+        data[i] = rand() % 1000;
+    }
+    
+    int* ran = randomize(numSlots);
+    values = new string[numSlots];
+    for(int i = 0; i < numSlots; i++){
+        if(i < numPairs * 2){
+            values[ran[i]] = to_string(data[i/2]);
+        }
+        else{
+            values[ran[i]] = "";
+        }
+    }
+  
+    delete[] data;
+    data = nullptr;
+    delete[] ran;
+    ran = nullptr;
 }
 
 //TODO: implement by students
 MemoryGame::~MemoryGame()
 {
+    delete[] values;
+    values = nullptr;
     //When an object is no longer in need,
     //release dynamically allocated memory by 
     //data members of the current object.
@@ -58,11 +78,22 @@ MemoryGame::~MemoryGame()
 //In constructors, randomly assign the data in dataVector 
 //to array values
 int* randomize(int size)
-{
+{   
+    int* newArr = new int[size];
+    for(int i = 0; i < size; i++){
+        newArr[i] = i;
+    }
+    int num;
+    while(size > 0){
+        num = rand() % size;
+        swap(newArr, num, size-1);
+        size--;
+    }
+    return(newArr);
     //idea to randomize 0, 1, 2, 3, 4, 5,
     //generate a random int in [0, 6), say 3,
     //then move arr[3] to the end,
-    //say, 0, 1, 2, 5, 4, 3
+    //say, 0, 1, 2, 5, 4, 3w
     //generate a random int in [0, 5), say 3 again,
     //then swap arr[3], which is 5 now, with arr[4], 
     //get 0, 1, 2, 4, 5, 3
@@ -71,15 +102,6 @@ int* randomize(int size)
     //get 0, 1, 4, 2, 5, 3
     //continue to randomize arr[0..2].
     //afterwards, continue to randomize arr[0..1].
-    int* nums = new int[size];
-    for (int i = 0; i < size; i++){
-        nums[i] = i;
-    }
-    for (int i = size -1 ; i >= 0; i--){
-        int randNum = rand() % i;
-        swap(nums,nums[i], nums[randNum]);
-    }
-    return nums;
 }
 
 //TODO: implement by students
@@ -111,11 +133,28 @@ void displaySeparateLine(int numSlots)
 
 //TODO: implement by students
 //display the items in values array where bShown is true.
+
 void MemoryGame::display(bool* bShown)
 {
-    
-
-
+    cout << " ";
+    for (int i = 0; i < numSlots; i++){
+        cout << setw(3) << i;
+        cout << setw(3) << " ";
+    }
+    cout << endl;
+    displaySeparateLine(numSlots);
+    cout << "|";
+    for (int i = 0; i < numSlots; i++){
+        if (bShown[i] == true){
+            cout << setw(5) << values[i];
+        }
+        else{
+            cout << setw(5) << "";
+        }
+        cout << "|";
+    }
+    cout << endl;
+    displaySeparateLine(numSlots);
 }
 
 //TODO: implement by students
@@ -127,5 +166,45 @@ void MemoryGame::display(bool* bShown)
 //(3) Finish until every pair are chosen correctly.
 void MemoryGame::play()
 {   
-
+    bool* bShown = new bool[numSlots];
+	for (int i = 0; i < numSlots; i++){
+	    bShown[i] = false;
+	}
+    display(bShown);
+	int index;
+	int numFlips = 0;
+	int pairsFound = 0;
+    int firstNum;
+	while (pairsFound < numPairs){
+	    cout << "Pick a cell to flip: ";
+	    cin >> index;
+	    while (index < 0 || index >= numSlots || bShown[index] == true){
+	        if (index < 0 || index >= numSlots){
+	            cout << "index needs to be in the range [0, " << numSlots << "]." <<endl;
+	        }
+	        else{
+	            cout << "The cell indexed at " << index << " is shown." << endl;
+	        }
+	        cout << "Re-enter an index: ";
+	        cin >> index;
+	    }
+	    if (numFlips % 2 == 0){
+	        bShown[index] = true;
+	        firstNum = index;
+	    }
+	    else{
+	        if ((values[firstNum] == values[index]) && (values[firstNum] != "")){
+	            bShown[index] = true;
+	            pairsFound++;
+	        }
+	        else{
+	            bShown[firstNum] = false;
+	        }
+	    }
+	    display(bShown);
+	    numFlips += 1;
+	}
+	cout << "Congratulations! Take " << numFlips << " steps to find all matched pairs." << endl;
+	delete[] bShown;
+	bShown = nullptr; 
 }
