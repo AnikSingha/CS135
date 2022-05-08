@@ -10,26 +10,31 @@ Create a function that returns the pairwise of two vectors
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using namespace std; //
 
-vector<int> sumPairWise(const vector<int> &v1, const vector<int> &v2){
-    vector<int> pair, larger, smaller;
-    if (v1.size() > v2.size()){
-        larger = v1;
-        smaller = v2;
-    } else {
-        larger = v2;
-        smaller = v1;
+vector<int> sumPairWise(vector<int> &v1, vector<int> &v2){
+    vector<int> x;
+    int big = max(v1.size(), v2.size());
+    int small = min(v1.size(), v2.size());
+    for (int i = 0; i < big - small; i++){
+        if (v1.size() > v2.size()){
+            v2.push_back(0);
+        } 
+        if (v1.size() < v2.size()){
+            v1.push_back(0);
+        }
     }
-    for (int i = 0; i < smaller.size(); i++){
-        pair.push_back(larger[i] + smaller[i]);
+    for (int i = 0; i < big; i++){
+        x.push_back(v1[i] + v2[i]);
     }
-    pair.push_back(larger[larger.size() - 1]);
-    return pair;
+    return x;
 }
 
 int main(){
     vector<int> v1{1,2,3};
     vector<int> v2{4,5};
-    sumPairWise(v1, v2); // returns [5, 7, 3]
+    vector<int> x = sumPairWise(v1, v2); // returns [5, 7, 3]
+    for (int i = 0; i < x.size(); i++){
+        cout << x[i] << " ";
+    }
 }
