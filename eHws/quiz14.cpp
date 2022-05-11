@@ -18,5 +18,4 @@ vector<int> makeVector(int n){
         }
     }
     return list;
-
 }
