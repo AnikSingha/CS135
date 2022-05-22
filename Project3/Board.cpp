@@ -1,139 +1,185 @@
+#include "Board.hpp"
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <cstdlib>
-#include "Board.hpp"
-
 using namespace std;
 
-/*
-Board::Board(){
-    max = 0; 
+/*Board::Board(){
+    max = 0;
     target = 32;
-    numRows = 3; 
+    numRows = 3;
     numCols = 3;
-    panel[numRows][numCols];
+    panel = new int*[3];
+    for(int i = 0; i < 3; i++){
+        panel[i] = new int[3];
+    }
 }
-
 Board::Board(int m){
-    max = 0; 
-    target = 32;
-    if(m >= 1){ 
-        numRows = m; 
-        numCols = m; 
-    } else { 
-        numRows = 3; 
-        numCols = 3; 
+    if(m >= 1){
+        numRows = m;
+        numCols = m;
     }
-    panel[numRows][numCols];
+    else{
+        numRows = 3;
+        numCols = 3;
+    }
+    max = 0;
+    target = 32;
+    panel = new int*[numRows];
+    for(int i = 0; i < numRows; i++){
+        panel[i] = new int[numCols];
+    }
 }
-
 Board::Board(int m, int n){
-    max = 0; 
-    target = 32;
-    if(m >= 1 && n >= 1){ 
-        numRows = m; 
-        numCols = n; 
-    } else {
-        numRows = 3; 
-        numCols = 3; 
+    if(m >= 1 && n >= 1){
+        numRows = m;
+        numCols = n;
     }
-    panel[numRows][numCols];
+    else{
+        numRows = 3;
+        numCols = 3;
+    }
+    max = 0;
+    target = 32;
+    panel = new int*[numRows];
+	for (int i = 0; i < numRows; i++)
+		panel[i] = new int[numCols];
 }
-
 Board::~Board(){
-    for(int i = 0; i < sizeof(panel) / sizeof(panel[0]); i++){
-        delete[] panel[i];
+    for (int i=0; i < numRows; i++){
+    delete[] panel[i];
+    panel[i] = nullptr;
     }
     delete[] panel;
     panel = nullptr;
-}
+}*/
 
 void Board::print() const{
-    for(int row = 0; row < numRows; row++){
-        for (int i = 0; i < numCols; i++){
-            cout << "+----";
-        }
-        
+    for (int i = 0; i < numRows; i++){
+		for (int j = 0; j < numCols; j++)
+		cout << "+----";
         cout << "+" << endl;
-
-        for(int col = 0; col <= numCols; col++){
-            if(col != numCols - 1){    
-                cout << "|    ";
-            }
-        }
-        cout << "|" << endl;
-    }
-    for (int j = 0; j < numCols; j++){
-            cout << "+----";
-    }
-    cout << "+" << endl;
-}
-*/
-
-Board::~Board(){
-    delete[] panel;
-	panel = nullptr;
-}
-
-void Board::print() const {
-	for (int i = 0; i < numRows; i++) {
-		for (int h = 0; h < numCols; h++) {
-			cout << "+----";
-		}
-		cout << "+" << endl;
-		for (int x = 0; x < numCols; x++) {
+		for (int j = 0; j < numCols; j++)
+		{
 			cout << "|";
-			if (panel[i][x] != 0) {
-				cout << std::setw(4) << panel[i][x];
-			}
-			else {
-				cout << "    ";
-			}
+			if (panel[i][j] != 0)
+				cout << setw(4) << panel[i][j];
+			else
+				cout << setw(4) << "";
 		}
 		cout << "|" << endl;
 	}
-	for (int i = 0; i < numCols; i++) {
-		cout << "+----";
-	}
+    for (int j = 0; j < numCols; j++)
+    cout << "+----";
 	cout << "+" << endl;
 }
 
-bool Board::noAdjacentSameValue() const {
-	for (int i = 1; i < numRows; i++) {
-		for (int j = 1; j < numCols - 1; j++) {
-			if (panel[i][j] == panel[i][j + 1])
-				return false;
-		}
-	}
-	for (int j = 0; j < numCols; j++) {
-		for (int i = 0; i < numRows - 1; i++) {
-			if (panel[i][j] == panel[i + 1][j]) {
-				return false;
-			}
-		}
-	}
-	return true;
+/*void Board::selectRandomCell(int& row, int& col){
+    int empty_cells = 0;
+    vector<int> v;
+    for(int i = 0; i < numRows; i++){
+        for(int j = 0; j < numCols; j++){
+            if(panel[i][j] == 0){
+                empty_cells++;
+                v.push_back((i * numCols) + j);
+            }
+        }
+    }
+    if(empty_cells != 0){
+        int random = rand() % v.size();
+        random = v.at(random);
+        row = random / numCols;
+        col = random % numCols;
+        panel[row][col] = 1;
+        Board::print();
+    } 
+    if(noAdjacentSameValue() || v.size() == 0){
+        cout << "Game over. Try again." << endl;
+    }
 }
 
-void Board::selectRandomCell(int& row, int& col) {
-	std::vector<int> zeroes;
-	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < numCols; j++) {
-			if (panel[i][j] == 0) {
-				zeroes.push_back(i * numCols + j);
+bool Board::noAdjacentSameValue() const{
+    for(int i = 0; i < numRows; i++){
+        for(int j = 0; j < numCols - 1; j++){
+            if(panel[i][j] == panel[i][j+1]){
+                return false;
+            }
+        }
+    }
+    for(int j = 0; j < numCols; j++){
+        for(int i = 0; i < numRows - 1; i++){
+            if(panel[i][j] == panel[i+1][j]){
+                return false;
+            }
+        }
+    }
+    if(max < target){
+        return true;
+    }
+}*/
+
+void Board::pressLeft(){
+    for (int i = 0; i < numRows; i++){
+		for (int j = 0; j < numCols - 1; j++){
+			if (panel[i][j] != 0 && panel[i][j] == panel[i][j+1]){
+				panel[i][j] *= 2;
+				for (int k = j+1; k < numCols - 1; k++){
+					panel[i][k] = panel[i][k+1];
+                }
+				panel[i][numCols - 1] = 0;
+				j--;
 			}
 		}
 	}
-	if (zeroes.size() > 0) {
-		int r = rand() % zeroes.size() + 0;
-		r = zeroes.at(r);
-		row = r / numCols;
-		col = r % numCols;
-		panel[row][col] = 1;
-		Board::print();
+	int row, col;
+	Board::selectRandomCell(row, col);
+}
+
+void Board::pressRight(){
+    for (int i = 0; i < numRows; i++){
+		for (int j = numCols - 1; j > -1; j--){
+			if (panel[i][j] != 0 && panel[i][j] == panel[i][j - 1]){
+				panel[i][j] *= 2;
+				for (int k = j-1; k > 0; k--){
+					panel[i][k] = panel[i][k-1];
+                }
+				panel[i][0] = 0;
+				j++;
+			}
+		}
 	}
-	if (noAdjacentSameValue() || zeroes.size() == 0) {
-		cout << "Game over. Try again." << endl;
+	int row, col;
+	Board::selectRandomCell(row, col);
+}
+
+void Board::pressUp(){
+    for (int i = 0; i < numRows - 1; i++){
+        for (int j = 0; j < numCols; j++){
+            if (panel[i][j] != 0 && panel[i][j] == panel[i+1][j]){
+                panel[i][j] *= 2;
+                for (int f = i+1; f < numRows - 1; f++){
+                    panel[f][j] = panel[f+1][j];
+                }
+                panel[numRows - 1][j] = 0;
+            }
+        }
+    }
+	int row, col;
+	Board::selectRandomCell(row, col);
+}
+
+void Board::pressDown(){
+    for (int i = numRows - 1; i > 0; i--){
+		for (int j = 0; j < numCols; j++){
+			if (panel[i][j] != 0 && panel[i][j] == panel[i-1][j]){
+				panel[i][j] *= 2;
+				for (int f = i-1; f > 0; f--){
+					panel[f][j] = panel[f-1][j];
+                }
+				panel[0][j] = 0;
+			}
+		}
 	}
+	int row, col;
+	Board::selectRandomCell(row, col);
 }
