@@ -12,25 +12,25 @@ Work with Classes
 using namespace std; //
 
 class Time { 
-public:
-    int h; //
-    int m; //
-};
+    public:
+        int h; //
+        int m; //
+    };
 
 enum Genre {ACTION, COMEDY, DRAMA, ROMANCE, THRILLER}; //
 
 class Movie { 
-public: 
-    string title;
-    Genre genre;     // only one genre per movie
-    int duration;    // in minutes
-};
+    public: 
+        string title;
+        Genre genre;     // only one genre per movie
+        int duration;    // in minutes
+    };
 
 class TimeSlot { 
-public: 
-    Movie movie;     // what movie
-    Time startTime;  // when it starts
-};
+    public: 
+        Movie movie;     // what movie
+        Time startTime;  // when it starts
+    };
 
 int minutesSinceMidnight(Time time){
     int hours = time.h;
